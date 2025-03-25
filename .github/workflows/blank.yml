@@ -28,7 +28,7 @@ jobs:
     steps:
       - run: exit 1
   build:
-    runs-on: arc-runner-set
+    runs-on: ubuntu-latest
     if: always()
     needs:
       - test
