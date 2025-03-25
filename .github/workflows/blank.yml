@@ -21,11 +21,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: exit 0
-  build:
+  test2:
     # The type of runner that the job will run on
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - run: exit 1
+  build:
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - test
+      - test2
+    steps:
+      - if: "needs.test.result == 'failure'"
+        run: exit 1
+      - if: "needs.test2.result == 'failure'"
+        run: exit 1
       - run: exit 0
       
       
