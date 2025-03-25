@@ -20,7 +20,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      - run: exit 1
+      - run: sleep 10 && exit 1
   build:
     # The type of runner that the job will run on
     needs: test
