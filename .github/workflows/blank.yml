@@ -27,5 +27,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: exit 0
+  pytest:
+    runs-on: arc-runner-set
+    if: always()
+    needs:
+      - test
+      - build
+    steps:
+      - if: "needs.test.result == 'failure'"
+        run: exit 1
+      - if: "needs.build.result == 'failure'"
+        run: exit 1
+      - run: exit 0
       
       
