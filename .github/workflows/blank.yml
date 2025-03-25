@@ -27,6 +27,8 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - if: "steps.test.outcome != 'success'"  # does not work
+        run: exit 1
       - run: exit 1
       
       
